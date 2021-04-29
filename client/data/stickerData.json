@@ -1,0 +1,7 @@
+[
+	{
+		"stickerID":"st:star",
+		"chatPrefix":":star:",
+		"stickerTexture":"res://stickers/star.png"
+	}
+]

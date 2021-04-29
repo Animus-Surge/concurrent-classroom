@@ -1,0 +1,3 @@
+[gd_scene format=2]
+
+[node name="cclass_server_root" type="Node"]

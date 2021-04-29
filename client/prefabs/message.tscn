@@ -1,0 +1,39 @@
+[gd_scene format=2]
+
+[node name="message" type="Panel"]
+margin_right = 400.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 100 )
+size_flags_horizontal = 3
+
+[node name="username" type="Label" parent="."]
+margin_right = 200.0
+margin_bottom = 14.0
+text = "USERNAME"
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sent" type="Label" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -200.0
+margin_bottom = 14.0
+text = "TIME"
+align = 2
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="message" type="Label" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -86.0
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
