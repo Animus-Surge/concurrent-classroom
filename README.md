@@ -10,3 +10,4 @@ This is a chat based communication tool that is intended to be used in the class
 - [ ] Private messaging
 - [ ] Quick creation of chats
 - [ ] Chat recording
+- [ ] Chat moderation

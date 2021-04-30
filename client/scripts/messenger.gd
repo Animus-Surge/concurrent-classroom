@@ -12,7 +12,8 @@ onready var stickerBtn = $messagePanel/stickerButton
 onready var messageInput = $messagePanel/textInput
 
 func _ready():
-	pass
+	stickerPanel.hide()
+	sendButton.disabled = true
 
 func _input(event):
 	if event is InputEventKey:

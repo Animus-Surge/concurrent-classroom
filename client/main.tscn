@@ -1,11 +1,12 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://prefabs/sticker.tscn" type="PackedScene" id=1]
-[ext_resource path="res://prefabs/message.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/root.gd" type="Script" id=1]
+[ext_resource path="res://scripts/startup.gd" type="Script" id=2]
 [ext_resource path="res://scripts/messenger.gd" type="Script" id=3]
 [ext_resource path="res://stickers/star.png" type="Texture" id=4]
 [ext_resource path="res://scripts/stickerManager.gd" type="Script" id=5]
 [ext_resource path="res://scripts/sticker.gd" type="Script" id=6]
+[ext_resource path="res://scripts/handler.gd" type="Script" id=7]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.101961, 0.101961, 0.101961, 1 )
@@ -13,19 +14,20 @@ bg_color = Color( 0.101961, 0.101961, 0.101961, 1 )
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.117647, 0.117647, 0.117647, 1 )
 
-[node name="Control" type="Control"]
+[node name="root" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="background" type="Panel" parent="."]
+[node name="chat" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 3 )
 
-[node name="messagePanel" type="Panel" parent="background"]
+[node name="messagePanel" type="Panel" parent="chat"]
 anchor_top = 0.829
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -35,7 +37,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="textInput" type="LineEdit" parent="background/messagePanel"]
+[node name="textInput" type="LineEdit" parent="chat/messagePanel"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -194.0
@@ -47,7 +49,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="sendbtn" type="Button" parent="background/messagePanel"]
+[node name="sendbtn" type="Button" parent="chat/messagePanel"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -66.0
@@ -60,7 +62,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="stickerButton" type="Button" parent="background/messagePanel"]
+[node name="stickerButton" type="Button" parent="chat/messagePanel"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -145.0
@@ -73,29 +75,25 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="chatPanel" type="Panel" parent="background"]
+[node name="chatPanel" type="Panel" parent="chat"]
 anchor_right = 1.0
 anchor_bottom = 0.829
 margin_bottom = 0.149963
 
-[node name="ScrollContainer" type="ScrollContainer" parent="background/chatPanel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="chat/chatPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GridContainer" type="GridContainer" parent="background/chatPanel/ScrollContainer"]
+[node name="GridContainer" type="GridContainer" parent="chat/chatPanel/ScrollContainer"]
 margin_right = 400.0
 margin_bottom = 539.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="message" parent="background/chatPanel/ScrollContainer/GridContainer" instance=ExtResource( 2 )]
-
-[node name="sticker" parent="background/chatPanel/ScrollContainer/GridContainer" instance=ExtResource( 1 )]
-
-[node name="stickerPanel" type="Panel" parent="background"]
+[node name="stickerPanel" type="Panel" parent="chat"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -110,20 +108,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ScrollContainer" type="ScrollContainer" parent="background/stickerPanel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="chat/stickerPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GridContainer" type="GridContainer" parent="background/stickerPanel/ScrollContainer"]
+[node name="GridContainer" type="GridContainer" parent="chat/stickerPanel/ScrollContainer"]
 margin_right = 311.0
 margin_bottom = 191.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TextureButton" type="TextureButton" parent="background/stickerPanel/ScrollContainer/GridContainer"]
+[node name="TextureButton" type="TextureButton" parent="chat/stickerPanel/ScrollContainer/GridContainer"]
 margin_right = 64.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
@@ -132,5 +130,56 @@ expand = true
 stretch_mode = 5
 script = ExtResource( 6 )
 
-[connection signal="pressed" from="background/messagePanel/sendbtn" to="background" method="_message_send"]
-[connection signal="toggled" from="background/messagePanel/stickerButton" to="background" method="_sticker_panel_toggle"]
+[node name="startup" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="joinbtn" type="Button" parent="startup"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -67.0
+margin_top = 23.5
+margin_right = 67.0
+margin_bottom = 56.5
+text = "Join Class Chat"
+
+[node name="codeInput" type="LineEdit" parent="startup"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -80.5
+margin_top = -18.5
+margin_right = 80.5
+margin_bottom = 18.5
+align = 1
+placeholder_text = "Class Code"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="errLabel" type="Label" parent="startup"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -88.0
+margin_right = 200.0
+margin_bottom = -24.0
+custom_colors/font_color = Color( 1, 0.227451, 0.227451, 1 )
+text = "%ERRORMESSAGE%"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+
+[node name="handler" type="Node" parent="."]
+script = ExtResource( 7 )
+
+[connection signal="pressed" from="chat/messagePanel/sendbtn" to="chat" method="_message_send"]
+[connection signal="toggled" from="chat/messagePanel/stickerButton" to="chat" method="_sticker_panel_toggle"]
+[connection signal="pressed" from="startup/joinbtn" to="startup" method="join"]
