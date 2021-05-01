@@ -6,8 +6,9 @@ var classes = {}
 
 #Classes
 # "class_id":{
-#	"students":{},
-#	"moderators":{},
+#	"name":string,
+#	"students":{}, - Default blank dictionary
+#	"teacher":{}, - Default blank dictionary
 #	"accepting_peers":boolean
 # }
 
@@ -41,3 +42,6 @@ remote func student_join(class_code, details):
 
 puppetsync func student_leave(id, server_code, details):
 	pass
+
+remote func chat_create(details, unique_code):
+	classes[unique_code] = details

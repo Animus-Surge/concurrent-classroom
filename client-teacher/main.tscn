@@ -1,0 +1,323 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://scripts/root.gd" type="Script" id=1]
+[ext_resource path="res://scripts/startup.gd" type="Script" id=2]
+[ext_resource path="res://scripts/messenger.gd" type="Script" id=3]
+[ext_resource path="res://stickers/star.png" type="Texture" id=4]
+[ext_resource path="res://scripts/stickerManager.gd" type="Script" id=5]
+[ext_resource path="res://scripts/sticker.gd" type="Script" id=6]
+[ext_resource path="res://scripts/handler.gd" type="Script" id=7]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.101961, 0.101961, 0.101961, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.117647, 0.117647, 0.117647, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0, 0, 0, 0.388235 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0, 0, 0, 1 )
+
+[node name="root" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="chat" type="Panel" parent="."]
+anchor_top = 0.0261538
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="messagePanel" type="Panel" parent="chat"]
+anchor_top = 0.829
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 0.149963
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="textInput" type="LineEdit" parent="chat/messagePanel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -194.0
+margin_top = 12.0
+margin_right = 194.0
+margin_bottom = 36.0
+placeholder_text = "Type your message here..."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sendbtn" type="Button" parent="chat/messagePanel"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -66.0
+margin_top = 40.0
+margin_right = -6.0
+margin_bottom = 68.0
+disabled = true
+text = "Send"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="stickerButton" type="Button" parent="chat/messagePanel"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -145.0
+margin_top = 40.0
+margin_right = -73.0
+margin_bottom = 68.0
+toggle_mode = true
+text = "Stickers"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="stickerButton2" type="Button" parent="chat/messagePanel"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -257.0
+margin_top = 40.0
+margin_right = -184.0
+margin_bottom = 68.0
+toggle_mode = true
+text = "Members"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="chatPanel" type="Panel" parent="chat"]
+anchor_right = 1.0
+anchor_bottom = 0.829
+margin_bottom = 0.149963
+
+[node name="ScrollContainer" type="ScrollContainer" parent="chat/chatPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="chat/chatPanel/ScrollContainer"]
+margin_right = 400.0
+margin_bottom = 524.907
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="stickerPanel" type="Panel" parent="chat"]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -155.5
+margin_top = -311.0
+margin_right = 155.5
+margin_bottom = -120.0
+custom_styles/panel = SubResource( 2 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="chat/stickerPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="chat/stickerPanel/ScrollContainer"]
+margin_right = 311.0
+margin_bottom = 191.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureButton" type="TextureButton" parent="chat/stickerPanel/ScrollContainer/GridContainer"]
+margin_right = 64.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
+texture_normal = ExtResource( 4 )
+expand = true
+stretch_mode = 5
+script = ExtResource( 6 )
+
+[node name="startup" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="newChat" type="Panel" parent="startup"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="startup/newChat"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -103.0
+margin_top = -167.0
+margin_right = 103.0
+margin_bottom = 167.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="startup/newChat/Panel"]
+margin_right = 206.0
+margin_bottom = 20.0
+text = "Create New Chat"
+align = 1
+valign = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="startup/newChat/Panel"]
+margin_top = 56.0
+margin_right = 93.0
+margin_bottom = 76.0
+text = "Chat Name"
+align = 1
+valign = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="startup/newChat/Panel"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -19.0
+margin_bottom = 20.0
+text = "x"
+
+[node name="chatName" type="LineEdit" parent="startup/newChat/Panel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -93.0
+margin_top = 72.0
+margin_right = 93.0
+margin_bottom = 96.0
+
+[node name="invonly" type="CheckBox" parent="startup/newChat/Panel"]
+margin_left = 10.0
+margin_top = 120.0
+margin_right = 196.0
+margin_bottom = 144.0
+text = "Invite Only"
+align = 1
+
+[node name="Button2" type="Button" parent="startup/newChat/Panel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -71.0
+margin_top = -48.0
+margin_right = 71.0
+margin_bottom = -24.0
+text = "Create Chatroom"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="joinChat" type="Panel" parent="startup"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="startup/joinChat"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -103.0
+margin_top = -167.0
+margin_right = 103.0
+margin_bottom = 167.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="startup/joinChat/Panel"]
+margin_right = 206.0
+margin_bottom = 20.0
+text = "Join Existing Chatroom"
+align = 1
+valign = 1
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="startup/joinChat/Panel"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -19.0
+margin_bottom = 20.0
+text = "x"
+
+[node name="Button" type="Button" parent="startup"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -71.0
+margin_top = -57.0
+margin_right = 71.0
+margin_bottom = -23.0
+text = "Create Classroom"
+
+[node name="Button2" type="Button" parent="startup"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -71.0
+margin_top = 21.0
+margin_right = 71.0
+margin_bottom = 55.0
+text = "Join Classroom"
+
+[node name="toolbar" type="Panel" parent="."]
+margin_right = 400.0
+margin_bottom = 17.0
+custom_styles/panel = SubResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="handler" type="Node" parent="."]
+script = ExtResource( 7 )
+
+[connection signal="pressed" from="chat/messagePanel/sendbtn" to="chat" method="_message_send"]
+[connection signal="toggled" from="chat/messagePanel/stickerButton" to="chat" method="_sticker_panel_toggle"]
+[connection signal="pressed" from="startup/newChat/Panel/Button" to="startup" method="closemodal_cc"]
+[connection signal="pressed" from="startup/joinChat/Panel/Button" to="startup" method="closemodal_jc"]

@@ -10,9 +10,18 @@ config_version=4
 
 [application]
 
-config/name="CC Server"
+config/name="CC Teacher"
 run/main_scene="res://main.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="CClassroom"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=400
+window/size/height=650
+window/size/resizable=false
+window/size/borderless=true
 
 [physics]
 
